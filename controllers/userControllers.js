@@ -19,7 +19,7 @@ module.exports.registerDoctor = async (req, res) => {
 
 module.exports.createSession = async (req, res) => {
   try {
-    let user = await Doctor.findOne({ username: req.body.username });
+    let user = await Doctor.findOne({ name: req.body.name });
 
     if (!user || user.password != req.body.password) {
       return res.status(422).json({
@@ -116,6 +116,7 @@ module.exports.AllReports = async (req, res, next) => {
       data: patient,
     });
   } catch (error) {
+    console.log(AllReports);
     res.status(500).json({
       success: false,
       message: "Couldn't Find Report",

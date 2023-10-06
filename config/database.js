@@ -1,11 +1,5 @@
 const mongoose = require("mongoose");
-
-mongoose.connect(process.env.MONGODB_STRING_URL); //.then(() => {
-//     console.log("Successfully connecting with mongoodb")
-// }).catch(() => {
-//     console.log("Error in connecting with mongoodb")
-// });
-
+mongoose.connect('mongodb+srv://krishna_pandit:G89dgkl5Pt9rYXIA@clustercodingninjas.h5erjpx.mongodb.net/?retryWrites=true&w=majority'); //.then(() => {
 const db = mongoose.connection;
 
 db.on(
