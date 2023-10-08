@@ -1,5 +1,7 @@
+// Requiring mongoose
 const mongoose = require('mongoose');
 
+// Creating Doctor Schema
 const doctorSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -14,4 +16,5 @@ const doctorSchema = new mongoose.Schema({
 
 const Doctor = mongoose.model("Doctor", doctorSchema);
 
+// Exporting module
 module.exports = Doctor;

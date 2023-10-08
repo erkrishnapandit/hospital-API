@@ -1,5 +1,7 @@
+// requiring mongoose
 const mongoose = require("mongoose");
-mongoose.connect('mongodb+srv://krishna_pandit:G89dgkl5Pt9rYXIA@clustercodingninjas.h5erjpx.mongodb.net/?retryWrites=true&w=majority'); //.then(() => {
+// Adding Connection String with atlas mongodb cluster.
+mongoose.connect('mongodb+srv://krishna_pandit:G89dgkl5Pt9rYXIA@clustercodingninjas.h5erjpx.mongodb.net/?retryWrites=true&w=majority');
 const db = mongoose.connection;
 
 db.on(

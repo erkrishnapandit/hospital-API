@@ -2,6 +2,7 @@ const Doctor = require("../models/doctor");
 const Patient = require("../models/patient");
 const jwt = require("jsonwebtoken");
 
+// Controller to register doctor 
 module.exports.registerDoctor = async (req, res) => {
   try {
     const doctor = await Doctor.create(req.body);
@@ -9,6 +10,7 @@ module.exports.registerDoctor = async (req, res) => {
       success: true,
       message: "Doctro created successfully",
     });
+    // Error Handeling
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -17,6 +19,7 @@ module.exports.registerDoctor = async (req, res) => {
   }
 };
 
+// Controller to login doctor
 module.exports.createSession = async (req, res) => {
   try {
     let user = await Doctor.findOne({ name: req.body.name });
@@ -26,13 +29,13 @@ module.exports.createSession = async (req, res) => {
         message: "Invalid UserName or Password",
       });
     }
-
     return res.status(200).json({
       message: "Sign in successful. Here is your token, please keep it safe",
       data: {
         token: jwt.sign(user.toJSON(), "secret", { expiresIn: "1d" }),
       },
     });
+    // Error Handling
   } catch (error) {
     console.log("Error", error);
     return res.status(500).json({
@@ -41,6 +44,7 @@ module.exports.createSession = async (req, res) => {
   }
 };
 
+// Controller to register patient
 module.exports.registerPatient = async (req, res) => {
   try {
     const doctorID = req?.user.id;
@@ -55,6 +59,7 @@ module.exports.registerPatient = async (req, res) => {
       message: "Patient created successfully",
       patient,
     });
+    // Error handling
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -64,6 +69,7 @@ module.exports.registerPatient = async (req, res) => {
   }
 };
 
+// Controller to create Report
 module.exports.creatReport = async (req, res) => {
   try {
     const patient = await Patient.findById(req.params.id);
@@ -77,6 +83,7 @@ module.exports.creatReport = async (req, res) => {
       message: "Report Submitted Successfully",
       patient,
     });
+    // Error handling
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -86,6 +93,7 @@ module.exports.creatReport = async (req, res) => {
   }
 };
 
+// Controller to Get all report to a patient
 module.exports.all_reports = async (req, res) => {
   try {
     const patient = await Patient.findById(req.params.id);
@@ -102,6 +110,7 @@ module.exports.all_reports = async (req, res) => {
   }
 };
 
+// Controller to get all teports by status
 module.exports.AllReports = async (req, res, next) => {
   try {
     const patient = await Patient.find({

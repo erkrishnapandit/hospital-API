@@ -1,11 +1,14 @@
+// Requring mongoose
 const mongoose = require("mongoose");
 
+// Creating patient schema
 const patientSchema = new mongoose.Schema({
   name: {
     type: String,
     require: [true, "Please Provide Patient Name"],
     unique: true,
   },
+  // Creating report Array
   reports: [
     {
       status: {
